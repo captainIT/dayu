@@ -1,18 +1,14 @@
 <template>
    <div class="header">
      <div class="top">
-       <a class="logo" href="/about" title="234">
+       <a class="logo" href="/data" >
          <img width="32" height="32" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNzcuNjcgMjc3LjY3Ij48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6IzBjNjRjZDt9PC9zdHlsZT48L2RlZnM+PGcgaWQ9IkxheWVyXzIiIGRhdGEtbmFtZT0iTGF5ZXIgMiI+PGcgaWQ9IkxheWVyXzEtMiIgZGF0YS1uYW1lPSJMYXllciAxIj48Y2lyY2xlIGNsYXNzPSJjbHMtMSIgY3g9IjEzOC44IiBjeT0iNjYuNTEiIHI9IjExLjQ3Ii8+PGNpcmNsZSBjbGFzcz0iY2xzLTEiIGN4PSIyMDAuOCIgY3k9IjE0MS4yNiIgcj0iMTEuNDciLz48Y2lyY2xlIGNsYXNzPSJjbHMtMSIgY3g9IjgwLjMiIGN5PSIxMTUuMzgiIHI9IjExLjQ3Ii8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMjc3LjY3LDE2Ny41MVYxMTAuMThoLTM5YTEwMi43NCwxMDIuNzQsMCwwLDAtOS0yMS42NGwyNy42LTI3LjZMMjE2LjczLDIwLjQsMTg5LjEzLDQ4YTEwMi44MywxMDIuODMsMCwwLDAtMjEuNjUtOVYwSDExMC4xNVYzOWExMDMuMjcsMTAzLjI3LDAsMCwwLTIxLjYyLDlMNjAuOTIsMjAuMzgsMjAuMzgsNjAuOTIsNDgsODguNTNhMTAzLDEwMywwLDAsMC05LDIxLjY1SDB2NTcuMzNIMzlhMTAzLDEwMywwLDAsMCw5LDIxLjY0bC0yNy42LDI3LjU5TDM1LjI1LDIzMS42bDM2Ljg0LTM3LjEzVjEzOC4zNWEyNC40MSwyNC40MSwwLDEsMSwxNi40OSwwdjYyLjg3bC00MS42OSw0MiwxNCwxNCwyNy42LTI3LjZhMTAyLjc3LDEwMi43NywwLDAsMCwyMS42Miw5djM5aDIwLjQ0Vjg5LjQ4YTI0LjQxLDI0LjQxLDAsMSwxLDE2LjQ5LDBWMjc3LjY3aDIwLjR2LTM5YTEwMi45MSwxMDIuOTEsMCwwLDAsMjEuNjYtOWwyNy41OCwyNy41OCwxNC4zOS0xNC4zOS0zOC41Mi0zOS4wNVYxNjQuMjNhMjQuNDEsMjQuNDEsMCwxLDEsMTYuNDksMFYxOTdsMzMuNywzNC4xOCwxNC40OC0xNC40OC0yNy41OS0yNy41OGExMDIuODUsMTAyLjg1LDAsMCwwLDktMjEuNjNaIi8+PC9nPjwvZz48L3N2Zz4=">
          <h3 class="name"> {{$t('LogoName')}}</h3>
        </a>
        <div style="flex-grow: 1"></div>
 
-       <div class="language">
-         <el-link type="primary" @click="goCropper">{{$t('cropperTool')}}</el-link>
-       </div>
-       <div class="language">
-         <el-link type="primary" @click="changeLanguage">{{languageTxt}}</el-link>
-       </div>
+
+   
        <div >
          <div class="right" v-popover="popoverRef" v-click-outside="onClickOutside">
                       <span class="userName">test</span> <el-avatar :size="30"> L </el-avatar>

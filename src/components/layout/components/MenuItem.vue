@@ -1,17 +1,14 @@
 <template>
   <div class="menuItem" :class="[testKey===selectedMenu?'selected':'',menuItem]" @click="goMenu">
-    <el-icon>
-      <Coin />
      <component :is="Coin" style="width: 20px;height: 20px"></component>
-    </el-icon>
-
     <div class="name">  {{$t(name)}} </div>
   </div>
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted, onUpdated, ref } from "vue";
 import router from "../../../router";
+import { useRoute } from "vue-router";
 
 const props = defineProps({
   iconLink: String,
@@ -28,8 +25,8 @@ const goMenu=()=>{
   emit('update:selectedMenu', props.testKey)
 }
 
-onMounted(()=>{
-   console.log(props)
+onUpdated(()=>{
+
 })
 </script>
 

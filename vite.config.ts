@@ -6,13 +6,40 @@ import vueJsx from "@vitejs/plugin-vue-jsx";
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
 import { viteMockServe } from "vite-plugin-mock";
-
+import {  loadEnv } from 'vite'
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 import path from "path";
 
 // https://vitejs.dev/config/
 
-export default ({ command }: ConfigEnv): UserConfigExport => {
+interface ImportMetaEnv {
+  VITE_APP_TITLE: string
+  VITE_PORT: number;
+  VITE_PROXY: string;
+}
+
+interface IObject<T> {
+  [index: string]: T
+}
+
+const proxy = (list: [string, string][]) => {
+  const obj:IObject<any> = {}
+  list.forEach((v) => {
+    obj[v[0]] = {
+      target: v[1],
+      changeOrigin: true,
+      rewrite: (path:any) => path.replace(new RegExp(`^${v[0]}`), ''),
+      ...(/^https:\/\//.test(v[1]) ? { secure: false } : {})
+    }
+  })
+  return obj
+}
+
+export default ({ command,mode }: ConfigEnv): UserConfigExport => {
+
+  const root = process.cwd()
+  const env = loadEnv(mode, root) as unknown as ImportMetaEnv
+
   return {
     plugins: [vue(), vueJsx(), AutoImport({
       resolvers: [ElementPlusResolver()]
@@ -31,6 +58,10 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
       }
       // https://cn.vitejs.dev/config/#resolve-extensions 不 建议忽略自定义导入类型的扩展名（例如：.vue），因为它会影响 IDE 和类型支持。
       // extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue']
+    },
+    server: {
+      proxy: env.VITE_PROXY ? proxy(JSON.parse(env.VITE_PROXY)) : {},
+      port: env.VITE_PORT
     },
     css: {
       preprocessorOptions: {

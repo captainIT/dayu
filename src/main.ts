@@ -11,6 +11,7 @@ import { Language } from "@/model/enum";
 import en from "./language/en";
 import zh from "./language/zh";
 import * as ElementPlusIconsVue from "@element-plus/icons-vue";
+import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 
 const app = createApp(App);
 
@@ -32,9 +33,12 @@ const i18n = createI18n({
   messages: { en, zh },
 });
 app.use(i18n);
-app.use(ElementPlus);
+app.use(ElementPlus,{
+  locale: zhCn,
+});
 app.use(createPinia());
 app.use(router);
+
 
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component);

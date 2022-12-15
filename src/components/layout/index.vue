@@ -29,7 +29,7 @@ export default {
   min-height: 100vh;
   overflow-x: hidden;
   .left{
-    width: 70px;
+    width: 100px;
 
     box-shadow:0px 8px 24px rgb(0 53 133 / 10%) !important ;
     z-index: 1100;

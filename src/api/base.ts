@@ -40,3 +40,4 @@ baseAxios.interceptors.response.use(
     }
   }
 )
+export default baseAxios
