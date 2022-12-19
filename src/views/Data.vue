@@ -5,20 +5,21 @@ import axios from "axios";
 import {renderAsync} from "docx-preview";
 import { useRouter } from "vue-router";
 import { ElMessage} from "element-plus";
+import { getReport } from "@/api/user";
 
 // 响应式状态
 const counter = useCounterStore()
-
 
 const open = () => {
   ElMessage('this is a message.')
 }
 
 // 生命周期钩子
-onMounted(() => {
-  console.log("=======" + 3+"=======");
+onMounted(async () => {
+  let param={}
+  const {data} = await getReport(param)
 })
-const  oPreview=(data:any)=> {
+const oPreview=(data:any)=> {
   console.log("=======" + data+"=======");
   return "%%%%%%"
 }
@@ -63,7 +64,7 @@ const goDetail=(item:any) =>{
   <div >
     <h1>{{$t('主页')}} </h1>
     <el-button @click="oPreview">生成今日报告</el-button>
-    <div style="">
+    <div style="margin-top: 10px">
       <el-calendar>
         <template #date-cell="{ data }">
           <div :class="hasData(data) ? 'is-selected' : ''" @click="goDetail(data)">

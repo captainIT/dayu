@@ -9,8 +9,19 @@ onMounted(() => {
 </script>
 <template>
   <div >
-    <h1>{{$t('settings')}} </h1>
-    <div>修改用户信息</div>
+    <h1>{{$t('设置')}} </h1>
+    <div>个人资料</div>
+    <el-divider border-style="dashed" />
+
+    <div>
+      <span style="margin-right: 20px">姓名:</span>
+      <span >吴彦祖</span>
+    </div>
+    <div>
+      <span style="margin-right: 20px">手机号:</span>
+      <span>13569425582</span>
+
+    </div>
   </div>
 </template>
 

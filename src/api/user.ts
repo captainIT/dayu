@@ -1,23 +1,22 @@
 import {baseAxios } from "./base";
 
 const api = {
-  getJobList: '/api/model_job/get',
-  postJob: '/api/model_job/get',
+  postReport: '/api/report/post',
+  getReport: '/api/report/get',
 }
-// 登录方法
-export function user(param: any,) {
+export function getReport(param: any) {
   return baseAxios({
-    url: api.getJobList,
+    url: api.getReport,
     method: 'get',
     params: param
   })
 }
 
-export function postJob(param: any){
+export function postReport(data: any) {
   return baseAxios({
-    url: api.postJob,
+    url: api.postReport,
     method: 'post',
-    data: param
+    data: data
   })
 }
 
