@@ -3,6 +3,7 @@ import { onMounted, reactive, ref } from "vue";
 import { useCounterStore } from "@/stores/counter";
 import { baseAxios } from "@/api/base";
 import router from "@/router";
+import {getLearn, getReport, postLearn, postReport} from "@/api/user";
 
 // 响应式状态
 const counter = useCounterStore();
@@ -18,32 +19,16 @@ const open = () => {
     });
 };
 
-const listData = ref([{
-  "date": "2022-12-21",
-  "value": "这是我的心得21"
-}, {
-  "date": "2022-12-23",
-  "value": "这是我的心得23"
-}, {
-  "date": "2022-12-27",
-  "value": "这这是我的心得27这是我的心得27这是我的心得27这是我的心得27这是我的心得27这是我的心得27这是我的心得27这是我的心得27这是我的心得27是我的心得27"
-}, {
-  "date": "2022-12-29",
-  "value": "这是我的心得29"
-}, {
-  "date": "2022-12-12",
-  "value": "这是我的心得112"
-}]);
+const listData = ref([]);
 
 const dialogFormVisible = ref(false);
 const getDay = (data: any) => {
   return data.day.split("-").slice(1)[1];
 };
 const hasData = (date: any) => {
-  let test = date.day.split("-").slice(1)[1];
-  let findItem = listData.value.find(item => item.date == date.day);
+  let findItem = listData.value.find(item => item.create_time == date.day);
   if (findItem) {
-    return findItem.value;
+    return findItem.data;
   }
   return "";
 };
@@ -53,27 +38,33 @@ const form = reactive({
 const currentData = ref();
 const createTips = (data: any) => {
   currentData.value = data.day;
-  console.log("=======" + data.day + "=======");
-  let findItem = listData.value.find(item => item.date == currentData.value);
+  let findItem = listData.value.find(item => item.create_time == data.day);
   if (findItem) {
-    form.name = findItem.value;
+    form.name = findItem.data;
   }
-
   dialogFormVisible.value = true;
 };
 
-const save = () => {
-  let findItem = listData.value.find(item => item.date == currentData.value);
+const save = async () => {
+  let findItem = listData.value.find(item => item.create_time == currentData.value);
+    let param={
+    "data":form.name, "create_time":currentData.value
+  }
+  const {data} = await postLearn(param)
   if (findItem) {
-    findItem.value = form.name;
+    findItem.data = form.name;
   } else {
-    listData.value.push({ "date": currentData.value, "value": form.name });
+    listData.value.push({ "create_time": currentData.value, "data": form.name });
   }
   form.name = "";
   dialogFormVisible.value = false;
 };
 // 生命周期钩子
-onMounted(() => {
+onMounted(async () => {
+  let param={}
+    const {data} = await getLearn(param)
+  listData.value=data
+
 });
 </script>
 <template>

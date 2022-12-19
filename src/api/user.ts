@@ -3,6 +3,8 @@ import {baseAxios } from "./base";
 const api = {
   postReport: '/api/report/post',
   getReport: '/api/report/get',
+  postLearn: '/api/learn/post',
+  getLearn: '/api/learn/get',
 }
 export function getReport(param: any) {
   return baseAxios({
@@ -21,3 +23,18 @@ export function postReport(data: any) {
 }
 
 
+export function getLearn(param: any) {
+  return baseAxios({
+    url: api.getLearn,
+    method: 'get',
+    params: param
+  })
+}
+
+export function postLearn(data: any) {
+  return baseAxios({
+    url: api.postLearn,
+    method: 'post',
+    data: data
+  })
+}

@@ -13,12 +13,12 @@ onMounted(() => {
     <div>个人资料</div>
     <el-divider border-style="dashed" />
 
-    <div>
-      <span style="margin-right: 20px">姓名:</span>
+    <div style="margin-bottom: 20px">
+      <span style="margin-right: 20px;font-weight: 700">姓名:</span>
       <span >吴彦祖</span>
     </div>
     <div>
-      <span style="margin-right: 20px">手机号:</span>
+      <span style="margin-right: 20px;font-weight: 700">手机号:</span>
       <span>13569425582</span>
 
     </div>
